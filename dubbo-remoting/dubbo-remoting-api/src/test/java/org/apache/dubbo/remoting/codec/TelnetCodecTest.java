@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.remoting.codec;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.remoting.Channel;
 import org.apache.dubbo.remoting.Codec2;
@@ -100,6 +101,7 @@ class TelnetCodecTest {
         }
         ByteArrayInputStream bi = new ByteArrayInputStream(objBytes);
         ObjectInputStream oi = new ObjectInputStream(bi);
+        ObjectInputFilters.enableObjectFilterIfUnprotected(oi);
         return oi.readObject();
     }
 

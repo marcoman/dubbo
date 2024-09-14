@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.metadata;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.utils.JsonUtils;
 
@@ -191,6 +192,7 @@ class MetadataInfoTest {
 
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+        ObjectInputFilters.enableObjectFilterIfUnprotected(objectInputStream);
         MetadataInfo metadataInfo2 = (MetadataInfo) objectInputStream.readObject();
         objectInputStream.close();
 
