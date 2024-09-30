@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.test.check.registrycenter.processor;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.apache.dubbo.common.logger.ErrorTypeAwareLogger;
 import org.apache.dubbo.common.logger.LoggerFactory;
 import org.apache.dubbo.test.check.exception.DubboTestException;
@@ -69,7 +70,7 @@ public abstract class ZookeeperUnixProcessor implements Processor {
     private void logErrorStream(final InputStream errorStream) {
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(errorStream))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 logger.error(TESTING_REGISTRY_FAILED_TO_START_ZOOKEEPER, "", "", line);
             }
         } catch (IOException e) {
@@ -87,7 +88,7 @@ public abstract class ZookeeperUnixProcessor implements Processor {
         final StringBuilder log = new StringBuilder();
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 if (this.getPattern().matcher(line).matches()) {
                     return;
                 }
