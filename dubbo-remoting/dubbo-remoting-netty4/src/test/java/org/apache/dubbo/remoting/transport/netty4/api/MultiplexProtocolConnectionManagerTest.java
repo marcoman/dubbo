@@ -104,7 +104,7 @@ public class MultiplexProtocolConnectionManagerTest {
 
         Consumer<AbstractConnectionClient> consumer = connection -> {
             String protocol = connection.getUrl().getProtocol();
-            Assertions.assertTrue(protocol.equals("empty") || protocol.equals("tri"));
+            Assertions.assertTrue("empty".equals(protocol) || "tri".equals(protocol));
         };
 
         connectionManager.forEachConnection(consumer);

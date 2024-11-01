@@ -188,8 +188,8 @@ class CompatibleTypeUtilsTest {
             result = CompatibleTypeUtils.compatibleTypeConvert(set, String[].class);
             assertEquals(String[].class, result.getClass());
             assertEquals(2, ((String[]) result).length);
-            assertTrue(((String[]) result)[0].equals("a") || ((String[]) result)[0].equals("b"));
-            assertTrue(((String[]) result)[1].equals("a") || ((String[]) result)[1].equals("b"));
+            assertTrue("a".equals(((String[]) result)[0]) || "b".equals(((String[]) result)[0]));
+            assertTrue("a".equals(((String[]) result)[1]) || "b".equals(((String[]) result)[1]));
 
             result = CompatibleTypeUtils.compatibleTypeConvert(array, Set.class);
             assertEquals(HashSet.class, result.getClass());
@@ -218,8 +218,8 @@ class CompatibleTypeUtilsTest {
             result = CompatibleTypeUtils.compatibleTypeConvert(list, String[].class);
             assertEquals(String[].class, result.getClass());
             assertEquals(2, ((String[]) result).length);
-            assertTrue(((String[]) result)[0].equals("a"));
-            assertTrue(((String[]) result)[1].equals("b"));
+            assertTrue("a".equals(((String[]) result)[0]));
+            assertTrue("b".equals(((String[]) result)[1]));
         }
     }
 }

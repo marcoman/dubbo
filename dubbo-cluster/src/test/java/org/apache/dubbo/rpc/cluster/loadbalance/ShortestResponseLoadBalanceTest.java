@@ -48,15 +48,15 @@ class ShortestResponseLoadBalanceTest extends LoadBalanceBaseTest {
         for (int i = 0; i < loop; i++) {
             Invoker selected = lb.select(weightInvokersSR, null, weightTestInvocation);
 
-            if (selected.getUrl().getProtocol().equals("test1")) {
+            if ("test1".equals(selected.getUrl().getProtocol())) {
                 sumInvoker1++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test2")) {
+            if ("test2".equals(selected.getUrl().getProtocol())) {
                 sumInvoker2++;
             }
             // never select invoker5 because it's estimated response time is more than invoker1 and invoker2
-            Assertions.assertTrue(!selected.getUrl().getProtocol().equals("test5"), "select is not the shortest one");
+            Assertions.assertTrue(!"test5".equals(selected.getUrl().getProtocol()), "select is not the shortest one");
         }
 
         // the sumInvoker1 : sumInvoker2 approximately equal to 1: 9
@@ -89,15 +89,15 @@ class ShortestResponseLoadBalanceTest extends LoadBalanceBaseTest {
         for (int i = 0; i < loop; i++) {
             Invoker selected = lb.select(weightInvokersSR, null, weightTestInvocation);
 
-            if (selected.getUrl().getProtocol().equals("test1")) {
+            if ("test1".equals(selected.getUrl().getProtocol())) {
                 sumInvoker1++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test2")) {
+            if ("test2".equals(selected.getUrl().getProtocol())) {
                 sumInvoker2++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test5")) {
+            if ("test5".equals(selected.getUrl().getProtocol())) {
                 sumInvoker5++;
             }
         }

@@ -50,16 +50,16 @@ class LeastActiveBalanceTest extends LoadBalanceBaseTest {
         for (int i = 0; i < loop; i++) {
             Invoker selected = lb.select(weightInvokers, null, weightTestInvocation);
 
-            if (selected.getUrl().getProtocol().equals("test1")) {
+            if ("test1".equals(selected.getUrl().getProtocol())) {
                 sumInvoker1++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test2")) {
+            if ("test2".equals(selected.getUrl().getProtocol())) {
                 sumInvoker2++;
             }
             // never select invoker3 because it's active is more than invoker1 and invoker2
             Assertions.assertTrue(
-                    !selected.getUrl().getProtocol().equals("test3"), "select is not the least active one");
+                    !"test3".equals(selected.getUrl().getProtocol()), "select is not the least active one");
         }
 
         // the sumInvoker1 : sumInvoker2 approximately equal to 1: 9

@@ -1013,7 +1013,7 @@ public abstract class AbstractConfig implements Serializable {
                         buf.append(' ');
                         buf.append(key);
                         buf.append("=\"");
-                        buf.append(key.equals("password") ? "******" : ToStringUtils.toString(value));
+                        buf.append("password".equals(key) ? "******" : ToStringUtils.toString(value));
                         buf.append('\"');
                     }
                 } catch (Exception e) {

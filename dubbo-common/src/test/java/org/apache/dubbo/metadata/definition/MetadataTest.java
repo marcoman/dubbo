@@ -62,7 +62,7 @@ class MetadataTest {
                 TestService.class.getMethods().length, sd.getMethods().size());
         boolean containsType = false;
         for (TypeDefinition type : sd.getTypes()) {
-            if (type.getType().equals("org.apache.dubbo.metadata.definition.common.OuterClass.InnerClass")) {
+            if ("org.apache.dubbo.metadata.definition.common.OuterClass.InnerClass".equals(type.getType())) {
                 containsType = true;
                 break;
             }
@@ -92,7 +92,7 @@ class MetadataTest {
                 TestService.class.getMethods().length, sd.getMethods().size());
         boolean containsType = false;
         for (TypeDefinition type : sd.getTypes()) {
-            if (type.getType().equals("org.apache.dubbo.metadata.definition.common.ResultWithRawCollections")) {
+            if ("org.apache.dubbo.metadata.definition.common.ResultWithRawCollections".equals(type.getType())) {
                 containsType = true;
                 break;
             }
@@ -120,7 +120,7 @@ class MetadataTest {
                 TestService.class.getMethods().length, sd.getMethods().size());
         boolean containsType = false;
         for (TypeDefinition type : sd.getTypes()) {
-            if (type.getType().equals("org.apache.dubbo.metadata.definition.common.ColorEnum")) {
+            if ("org.apache.dubbo.metadata.definition.common.ColorEnum".equals(type.getType())) {
                 containsType = true;
                 break;
             }
@@ -145,7 +145,7 @@ class MetadataTest {
                 TestService.class.getMethods().length, sd.getMethods().size());
         boolean containsType = false;
         for (TypeDefinition type : sd.getTypes()) {
-            if (type.getType().equals("org.apache.dubbo.metadata.definition.common.ClassExtendsMap")) {
+            if ("org.apache.dubbo.metadata.definition.common.ClassExtendsMap".equals(type.getType())) {
                 containsType = true;
                 break;
             }

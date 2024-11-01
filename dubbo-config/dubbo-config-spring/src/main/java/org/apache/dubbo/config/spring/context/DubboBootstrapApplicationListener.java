@@ -164,7 +164,7 @@ public class DubboBootstrapApplicationListener implements ApplicationListener, A
         StackTraceElement[] stackTrace = exception.getStackTrace();
         boolean found = false;
         for (StackTraceElement frame : stackTrace) {
-            if (frame.getMethodName().equals("registerListeners")
+            if ("registerListeners".equals(frame.getMethodName())
                     && frame.getClassName().endsWith("AbstractApplicationContext")) {
                 found = true;
                 break;

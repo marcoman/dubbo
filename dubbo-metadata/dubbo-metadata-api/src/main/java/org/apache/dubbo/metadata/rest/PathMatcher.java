@@ -255,7 +255,7 @@ public class PathMatcher {
 
     private String contextPathFormat(String contextPath) {
 
-        if (contextPath == null || contextPath.equals(SEPARATOR) || contextPath.length() == 0) {
+        if (contextPath == null || SEPARATOR.equals(contextPath) || contextPath.length() == 0) {
             return "";
         }
 

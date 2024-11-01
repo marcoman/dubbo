@@ -126,7 +126,7 @@ class ServiceDefinitionBuilderTest {
                 inner2TypeDefinition = typeDefinition;
             } else if (typeDefinition.getType().equals(ComplexObject.InnerObject3.class.getCanonicalName())) {
                 inner3TypeDefinition = typeDefinition;
-            } else if (typeDefinition.getType().equals("java.util.List<java.lang.Integer>")) {
+            } else if ("java.util.List<java.lang.Integer>".equals(typeDefinition.getType())) {
                 listTypeDefinition = typeDefinition;
             }
         }

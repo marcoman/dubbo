@@ -481,7 +481,7 @@ class FileTest {
             if (path.getAbsolutePath().contains("target")) {
                 return;
             }
-            if (path.getName().equals("pom.xml")) {
+            if ("pom.xml".equals(path.getName())) {
                 poms.add(path);
             }
         }

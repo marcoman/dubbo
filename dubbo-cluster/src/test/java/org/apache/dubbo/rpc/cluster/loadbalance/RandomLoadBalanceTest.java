@@ -67,15 +67,15 @@ class RandomLoadBalanceTest extends LoadBalanceBaseTest {
         for (int i = 0; i < loop; i++) {
             Invoker selected = lb.select(weightInvokers, null, weightTestInvocation);
 
-            if (selected.getUrl().getProtocol().equals("test1")) {
+            if ("test1".equals(selected.getUrl().getProtocol())) {
                 sumInvoker1++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test2")) {
+            if ("test2".equals(selected.getUrl().getProtocol())) {
                 sumInvoker2++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test3")) {
+            if ("test3".equals(selected.getUrl().getProtocol())) {
                 sumInvoker3++;
             }
         }

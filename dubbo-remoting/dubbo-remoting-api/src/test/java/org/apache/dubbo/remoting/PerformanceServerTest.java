@@ -116,9 +116,9 @@ class PerformanceServerTest {
         ExchangeServer telnetserver = Exchangers.bind(
                 "exchange://0.0.0.0:" + port, new ExchangeHandlerAdapter(FrameworkModel.defaultModel()) {
                     public String telnet(Channel channel, String message) throws RemotingException {
-                        if (message.equals("help")) {
+                        if ("help".equals(message)) {
                             return "support cmd: \r\n\tstart \r\n\tstop \r\n\tshutdown \r\n\trestart times [alive] [sleep] \r\ntelnet>";
-                        } else if (message.equals("stop")) {
+                        } else if ("stop".equals(message)) {
                             logger.info("server closed:" + server);
                             server.close();
                             return "stop server\r\ntelnet>";

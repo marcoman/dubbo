@@ -54,15 +54,15 @@ class AdaptiveLoadBalanceTest extends LoadBalanceBaseTest {
         for (int i = 0; i < loop; i++) {
             Invoker selected = lb.select(weightInvokers, null, weightTestInvocation);
 
-            if (selected.getUrl().getProtocol().equals("test1")) {
+            if ("test1".equals(selected.getUrl().getProtocol())) {
                 sumInvoker1++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test2")) {
+            if ("test2".equals(selected.getUrl().getProtocol())) {
                 sumInvoker2++;
             }
 
-            if (selected.getUrl().getProtocol().equals("test3")) {
+            if ("test3".equals(selected.getUrl().getProtocol())) {
                 sumInvoker3++;
             }
         }
@@ -105,7 +105,7 @@ class AdaptiveLoadBalanceTest extends LoadBalanceBaseTest {
             Map<String, String> metricsMap = new HashMap<>();
             String idKey = buildServiceKey(selected);
 
-            if (selected.getUrl().getProtocol().equals("test1")) {
+            if ("test1".equals(selected.getUrl().getProtocol())) {
                 sumInvoker1++;
                 metricsMap.put("rt", "10");
                 metricsMap.put("load", "10");
@@ -113,7 +113,7 @@ class AdaptiveLoadBalanceTest extends LoadBalanceBaseTest {
                 getAdaptiveMetricsInstance().addConsumerSuccess(idKey);
             }
 
-            if (selected.getUrl().getProtocol().equals("test2")) {
+            if ("test2".equals(selected.getUrl().getProtocol())) {
                 sumInvoker2++;
                 metricsMap.put("rt", "100");
                 metricsMap.put("load", "40");
@@ -121,7 +121,7 @@ class AdaptiveLoadBalanceTest extends LoadBalanceBaseTest {
                 getAdaptiveMetricsInstance().addConsumerSuccess(idKey);
             }
 
-            if (selected.getUrl().getProtocol().equals("test5")) {
+            if ("test5".equals(selected.getUrl().getProtocol())) {
                 metricsMap.put("rt", "5000");
                 metricsMap.put("load", "400"); // 400%
                 metricsMap.put("curTime", String.valueOf(System.currentTimeMillis() - 5000));

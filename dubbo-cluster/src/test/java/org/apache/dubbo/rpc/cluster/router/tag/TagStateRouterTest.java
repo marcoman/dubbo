@@ -158,7 +158,7 @@ class TagStateRouterTest {
         tagRouterRule.init(router);
 
         // assert tags
-        assert tagRouterRule.getKey().equals("demo-provider");
+        assert "demo-provider".equals(tagRouterRule.getKey());
         assert tagRouterRule.getPriority() == 1;
         assert tagRouterRule.getTagNames().contains("tag1");
         assert tagRouterRule.getTagNames().contains("tag2");
@@ -218,7 +218,7 @@ class TagStateRouterTest {
         tagRouterRule.init(router);
 
         // assert tags
-        assert tagRouterRule.getKey().equals("demo-provider");
+        assert "demo-provider".equals(tagRouterRule.getKey());
         assert tagRouterRule.getPriority() == 1;
         assert tagRouterRule.getTagNames().contains("tag1");
         assert tagRouterRule.getTagNames().contains("tag2");

@@ -47,7 +47,7 @@ public class DefaultMultipleSerialization implements MultipleSerialization {
     }
 
     private String convertHessian(String ser) {
-        if (ser.equals("hessian4")) {
+        if ("hessian4".equals(ser)) {
             return "hessian2";
         }
         return ser;

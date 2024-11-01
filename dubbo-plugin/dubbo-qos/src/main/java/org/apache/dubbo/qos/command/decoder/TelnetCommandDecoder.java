@@ -30,7 +30,7 @@ public class TelnetCommandDecoder {
                 String[] targetArgs = new String[array.length - 1];
                 System.arraycopy(array, 1, targetArgs, 0, array.length - 1);
                 String name = array[0].trim();
-                if (name.equals("invoke") && array.length > 2) {
+                if ("invoke".equals(name) && array.length > 2) {
                     targetArgs = reBuildInvokeCmdArgs(str);
                 }
                 commandContext = CommandContextFactory.newInstance(name, targetArgs, false);
