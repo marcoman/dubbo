@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.remoting.transport.netty;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.utils.NetUtils;
 import org.apache.dubbo.config.ApplicationConfig;
@@ -54,7 +55,7 @@ class ThreadNameTest {
 
     @BeforeEach
     public void before() throws Exception {
-        int port = NetUtils.getAvailablePort(20880 + new Random().nextInt(10000));
+        int port = NetUtils.getAvailablePort(20880 + new SecureRandom().nextInt(10000));
         serverURL = URL.valueOf("telnet://localhost?side=provider&codec=telnet").setPort(port);
         ApplicationModel applicationModel = ApplicationModel.defaultModel();
         ApplicationConfig applicationConfig = new ApplicationConfig("provider-app");

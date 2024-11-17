@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.configcenter.support.apollo;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.config.configcenter.ConfigChangeType;
 import org.apache.dubbo.common.config.configcenter.ConfigurationListener;
@@ -90,7 +91,7 @@ class ApolloDynamicConfigurationTest {
     @Test
     void testGetRule() {
         String mockKey = "mockKey1";
-        String mockValue = String.valueOf(new Random().nextInt());
+        String mockValue = String.valueOf(new SecureRandom().nextInt());
         putMockRuleData(mockKey, mockValue, DEFAULT_NAMESPACE);
         apolloDynamicConfiguration = new ApolloDynamicConfiguration(url, applicationModel);
         assertEquals(mockValue, apolloDynamicConfiguration.getConfig(mockKey, DEFAULT_NAMESPACE, 3000L));
@@ -107,7 +108,7 @@ class ApolloDynamicConfigurationTest {
     @Test
     void testGetInternalProperty() throws InterruptedException {
         String mockKey = "mockKey2";
-        String mockValue = String.valueOf(new Random().nextInt());
+        String mockValue = String.valueOf(new SecureRandom().nextInt());
         putMockRuleData(mockKey, mockValue, DEFAULT_NAMESPACE);
         TimeUnit.MILLISECONDS.sleep(1000);
         apolloDynamicConfiguration = new ApolloDynamicConfiguration(url, applicationModel);
@@ -129,7 +130,7 @@ class ApolloDynamicConfigurationTest {
     @Test
     void testAddListener() throws Exception {
         String mockKey = "mockKey3";
-        String mockValue = String.valueOf(new Random().nextInt());
+        String mockValue = String.valueOf(new SecureRandom().nextInt());
 
         final SettableFuture<org.apache.dubbo.common.config.configcenter.ConfigChangedEvent> future =
                 SettableFuture.create();

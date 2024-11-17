@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.monitor.dubbo;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.utils.NetUtils;
 import org.apache.dubbo.monitor.MetricsService;
@@ -67,7 +68,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 
 class MetricsFilterTest {
-    private int port = NetUtils.getAvailablePort(20880 + new Random().nextInt(10000));
+    private int port = NetUtils.getAvailablePort(20880 + new SecureRandom().nextInt(10000));
 
     private final Function<URL, Invoker<DemoService>> invokerFunction = (url) -> {
         Invoker<DemoService> serviceInvoker = mock(Invoker.class);
@@ -122,7 +123,7 @@ class MetricsFilterTest {
             Throwable throwable = null;
             for (int i = 0; i < 10; i++) {
                 try {
-                    port = NetUtils.getAvailablePort(20880 + new Random().nextInt(10000));
+                    port = NetUtils.getAvailablePort(20880 + new SecureRandom().nextInt(10000));
                     testcase.call();
                     throwable = null;
                     break;

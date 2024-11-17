@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.registry.multicast;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.utils.NetUtils;
 import org.apache.dubbo.registry.NotifyListener;
@@ -84,7 +85,7 @@ class MulticastRegistryTest {
      */
     @Test
     void testGetCustomPort() {
-        int port = NetUtils.getAvailablePort(20880 + new Random().nextInt(10000));
+        int port = NetUtils.getAvailablePort(20880 + new SecureRandom().nextInt(10000));
         URL customPortUrl = URL.valueOf("multicast://239.239.239.239:" + port);
         MulticastRegistry multicastRegistry = new MulticastRegistry(customPortUrl);
         assertThat(multicastRegistry.getUrl().getPort(), is(port));
@@ -186,7 +187,7 @@ class MulticastRegistryTest {
      */
     @Test
     void testAvailability() {
-        int port = NetUtils.getAvailablePort(20880 + new Random().nextInt(10000));
+        int port = NetUtils.getAvailablePort(20880 + new SecureRandom().nextInt(10000));
         MulticastRegistry registry = new MulticastRegistry(URL.valueOf("multicast://224.5.6.8:" + port));
         assertTrue(registry.isAvailable());
     }
@@ -224,7 +225,7 @@ class MulticastRegistryTest {
      */
     @Test
     void testCustomedPort() {
-        int port = NetUtils.getAvailablePort(20880 + new Random().nextInt(10000));
+        int port = NetUtils.getAvailablePort(20880 + new SecureRandom().nextInt(10000));
         MulticastRegistry multicastRegistry = new MulticastRegistry(URL.valueOf("multicast://224.5.6.7:" + port));
         try {
             MulticastSocket multicastSocket = multicastRegistry.getMulticastSocket();

@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.remoting;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.logger.ErrorTypeAwareLogger;
 import org.apache.dubbo.common.logger.LoggerFactory;
 import org.apache.dubbo.common.serialize.support.DefaultSerializationSelector;
@@ -95,7 +96,7 @@ class PerformanceClientFixedTest {
         }
 
         StringBuilder sb1 = new StringBuilder();
-        Random rd2 = new Random();
+        Random rd2 = new SecureRandom();
         char[] numbersAndLetters =
                 ("0123456789abcdefghijklmnopqrstuvwxyz" + "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ").toCharArray();
         int size1 = numbersAndLetters.length;

@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.remoting.buffer;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.junit.jupiter.api.Assertions;
@@ -66,7 +67,7 @@ class DynamicChannelBufferTest extends AbstractChannelBufferTest {
         buf.ensureWritableBytes(30);
         Assertions.assertEquals(buf.capacity(), 32);
 
-        Random random = new Random();
+        Random random = new SecureRandom();
         byte[] bytes = new byte[126];
         random.nextBytes(bytes);
         buf.writeBytes(bytes);

@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.remoting.transport.netty4;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.common.utils.NetUtils;
@@ -85,7 +86,7 @@ class ReplierDispatcherTest {
     void testDataPackage() throws Exception {
         ExchangeChannel client = Exchangers.connect(
                 URL.valueOf("exchange://localhost:" + port + "?" + CommonConstants.TIMEOUT_KEY + "=60000"));
-        Random random = new Random();
+        Random random = new SecureRandom();
         for (int i = 5; i < 100; i++) {
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < i * 100; j++)

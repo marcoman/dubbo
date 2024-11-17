@@ -16,6 +16,7 @@
  */
 package com.alibaba.dubbo.container.page;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.extension.ExtensionLoader;
 import org.apache.dubbo.common.logger.Logger;
 import org.apache.dubbo.common.logger.LoggerFactory;
@@ -48,7 +49,7 @@ public class PageServlet extends HttpServlet {
     protected static final Logger logger = LoggerFactory.getLogger(PageServlet.class);
     private static final long serialVersionUID = -8370312705453328501L;
     private static PageServlet INSTANCE;
-    protected final Random random = new Random();
+    protected final Random random = new SecureRandom();
     protected final Map<String, PageHandler> pages = new ConcurrentHashMap<>();
     protected final List<PageHandler> menus = new ArrayList<>();
 

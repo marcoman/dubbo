@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.metadata.store.redis;
 
+import java.security.SecureRandom;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.utils.JsonUtils;
 import org.apache.dubbo.common.utils.NetUtils;
@@ -67,7 +68,7 @@ class RedisMetadataReportTest {
 
         for (int i = 0; i < 10; i++) {
             try {
-                redisPort = NetUtils.getAvailablePort(30000 + new Random().nextInt(10000));
+                redisPort = NetUtils.getAvailablePort(30000 + new SecureRandom().nextInt(10000));
                 redisServer = newRedisServer()
                         .port(redisPort)
                         // set maxheap to fix Windows error 0x70 while starting redis
