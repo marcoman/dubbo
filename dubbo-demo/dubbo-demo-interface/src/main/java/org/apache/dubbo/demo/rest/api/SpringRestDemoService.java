@@ -21,61 +21,62 @@ import java.util.Map;
 
 import org.springframework.http.MediaType;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import po.User;
 
 @RequestMapping("/spring/demo/service")
 public interface SpringRestDemoService {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/hello")
+    @GetMapping(value = "/hello")
     Integer hello(@RequestParam("a") Integer a, @RequestParam("b") Integer b);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/error")
+    @GetMapping(value = "/error")
     String error();
 
-    @RequestMapping(method = RequestMethod.POST, value = "/say")
+    @PostMapping(value = "/say")
     String sayHello(@RequestBody String name);
 
-    @RequestMapping(
-            method = RequestMethod.POST,
-            value = "/testFormBody",
+    @PostMapping(
+    
+           value = "/testFormBody",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     Long testFormBody(@RequestBody Long number);
 
-    @RequestMapping(
-            method = RequestMethod.POST,
-            value = "/testJavaBeanBody",
+    @PostMapping(
+    
+           value = "/testJavaBeanBody",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     User testJavaBeanBody(@RequestBody User user);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/primitive")
+    @GetMapping(value = "/primitive")
     int primitiveInt(@RequestParam("a") int a, @RequestParam("b") int b);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/primitiveLong")
+    @GetMapping(value = "/primitiveLong")
     long primitiveLong(@RequestParam("a") long a, @RequestParam("b") Long b);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/primitiveByte")
+    @GetMapping(value = "/primitiveByte")
     long primitiveByte(@RequestParam("a") byte a, @RequestParam("b") Long b);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/primitiveShort")
+    @PostMapping(value = "/primitiveShort")
     long primitiveShort(@RequestParam("a") short a, @RequestParam("b") Long b, @RequestBody int c);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/testMapParam")
+    @GetMapping(value = "/testMapParam")
     String testMapParam(@RequestParam Map<String, String> params);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/testMapHeader")
+    @GetMapping(value = "/testMapHeader")
     String testMapHeader(@RequestHeader Map<String, String> headers);
 
-    @RequestMapping(
-            method = RequestMethod.POST,
-            value = "/testMapForm",
+    @PostMapping(
+    
+           value = "/testMapForm",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     List<String> testMapForm(MultiValueMap<String, String> params);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/headerInt")
+    @GetMapping(value = "/headerInt")
     int headerInt(@RequestHeader("header") int header);
 }

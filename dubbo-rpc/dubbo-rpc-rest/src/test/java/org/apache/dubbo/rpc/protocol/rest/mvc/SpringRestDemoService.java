@@ -22,52 +22,53 @@ import java.util.List;
 
 import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/demoService")
 public interface SpringRestDemoService {
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @GetMapping(value = "/hello")
     Integer hello(@RequestParam Integer a, @RequestParam Integer b);
 
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    @GetMapping(value = "/error")
     String error();
 
-    @RequestMapping(value = "/sayHello", method = RequestMethod.POST, consumes = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(value = "/sayHello", consumes = MediaType.TEXT_PLAIN_VALUE)
     String sayHello(String name);
 
     boolean isCalled();
 
-    @RequestMapping(
+    @PostMapping(
             value = "/testFormBody",
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    
+           consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     String testFormBody(@RequestBody User user);
 
-    @RequestMapping(
+    @PostMapping(
             value = "/testFormMapBody",
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    
+           consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     List<String> testFormMapBody(@RequestBody LinkedMultiValueMap map);
 
-    @RequestMapping(value = "/testHeader", method = RequestMethod.POST, consumes = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(value = "/testHeader", consumes = MediaType.TEXT_PLAIN_VALUE)
     String testHeader(@RequestHeader String header);
 
-    @RequestMapping(value = "/testHeaderInt", method = RequestMethod.GET, consumes = MediaType.TEXT_PLAIN_VALUE)
+    @GetMapping(value = "/testHeaderInt", consumes = MediaType.TEXT_PLAIN_VALUE)
     String testHeaderInt(@RequestHeader int header);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/primitive")
+    @GetMapping(value = "/primitive")
     int primitiveInt(@RequestParam("a") int a, @RequestParam("b") int b);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/primitiveLong")
+    @GetMapping(value = "/primitiveLong")
     long primitiveLong(@RequestParam("a") long a, @RequestParam("b") Long b);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/primitiveByte")
+    @GetMapping(value = "/primitiveByte")
     long primitiveByte(@RequestParam("a") byte a, @RequestParam("b") Long b);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/primitiveShort")
+    @PostMapping(value = "/primitiveShort")
     long primitiveShort(@RequestParam("a") short a, @RequestParam("b") Long b, @RequestBody int c);
 }
