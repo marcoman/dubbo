@@ -153,8 +153,10 @@ class PerformanceClientTest {
                             while (latch.getCount() > 0) {
                                 long c = count.get() - lastCount;
                                 if (!bfirst) // The first time is inaccurate.
-                                System.out.println("[" + dateFormat.format(new Date()) + "] count: " + count.get()
+                                {
+                                    System.out.println("[" + dateFormat.format(new Date()) + "] count: " + count.get()
                                         + ", error: " + error.get() + ",tps:" + (c / elapsd));
+                                }
 
                                 bfirst = false;
                                 lastCount = count.get();
