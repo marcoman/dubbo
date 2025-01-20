@@ -16,6 +16,8 @@
  */
 package com.alibaba.dubbo.container.page;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -142,7 +144,7 @@ public class ResourceFilter implements Filter {
                             .getContextClassLoader()
                             .getResourceAsStream(path.substring(CLASSPATH_PREFIX.length()));
                 } else {
-                    return new URL(path).openStream();
+                    return Urls.create(path, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openStream();
                 }
             } catch (IOException e) {
             }

@@ -16,6 +16,8 @@
  */
 package com.alibaba.dubbo.common;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.dubbo.common.utils.CollectionUtils;
 import org.apache.dubbo.common.utils.StringUtils;
 
@@ -104,14 +106,7 @@ public class URL extends org.apache.dubbo.common.URL {
 
     @Override
     public URL setProtocol(String protocol) {
-        return new URL(
-                protocol,
-                super.getUsername(),
-                super.getPassword(),
-                super.getHost(),
-                super.getPort(),
-                super.getPath(),
-                super.getParameters());
+        return Urls.create(protocol, super.getUsername(), super.getPassword(), super.getHost(), super.getPort(), super.getPath(), super.getParameters(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -121,14 +116,7 @@ public class URL extends org.apache.dubbo.common.URL {
 
     @Override
     public URL setUsername(String username) {
-        return new URL(
-                super.getProtocol(),
-                username,
-                super.getPassword(),
-                super.getHost(),
-                super.getPort(),
-                super.getPath(),
-                super.getParameters());
+        return Urls.create(super.getProtocol(), username, super.getPassword(), super.getHost(), super.getPort(), super.getPath(), super.getParameters(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -138,14 +126,7 @@ public class URL extends org.apache.dubbo.common.URL {
 
     @Override
     public URL setPassword(String password) {
-        return new URL(
-                super.getProtocol(),
-                super.getUsername(),
-                password,
-                super.getHost(),
-                super.getPort(),
-                super.getPath(),
-                super.getParameters());
+        return Urls.create(super.getProtocol(), super.getUsername(), password, super.getHost(), super.getPort(), super.getPath(), super.getParameters(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -161,14 +142,7 @@ public class URL extends org.apache.dubbo.common.URL {
 
     @Override
     public URL setHost(String host) {
-        return new URL(
-                super.getProtocol(),
-                super.getUsername(),
-                super.getPassword(),
-                host,
-                super.getPort(),
-                super.getPath(),
-                super.getParameters());
+        return Urls.create(super.getProtocol(), super.getUsername(), super.getPassword(), host, super.getPort(), super.getPath(), super.getParameters(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -183,14 +157,7 @@ public class URL extends org.apache.dubbo.common.URL {
 
     @Override
     public URL setPort(int port) {
-        return new URL(
-                super.getProtocol(),
-                super.getUsername(),
-                super.getPassword(),
-                super.getHost(),
-                port,
-                super.getPath(),
-                super.getParameters());
+        return Urls.create(super.getProtocol(), super.getUsername(), super.getPassword(), super.getHost(), port, super.getPath(), super.getParameters(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -206,7 +173,7 @@ public class URL extends org.apache.dubbo.common.URL {
     @Override
     public URL setAddress(String address) {
         org.apache.dubbo.common.URL result = super.setAddress(address);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -231,14 +198,7 @@ public class URL extends org.apache.dubbo.common.URL {
 
     @Override
     public URL setPath(String path) {
-        return new URL(
-                super.getProtocol(),
-                super.getUsername(),
-                super.getPassword(),
-                super.getHost(),
-                super.getPort(),
-                path,
-                super.getParameters());
+        return Urls.create(super.getProtocol(), super.getUsername(), super.getPassword(), super.getHost(), super.getPort(), path, super.getParameters(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -279,7 +239,7 @@ public class URL extends org.apache.dubbo.common.URL {
     @Override
     public URL getUrlParameter(String key) {
         org.apache.dubbo.common.URL result = super.getUrlParameter(key);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -537,61 +497,61 @@ public class URL extends org.apache.dubbo.common.URL {
     @Override
     public URL addParameter(String key, String value) {
         org.apache.dubbo.common.URL result = super.addParameter(key, value);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL addParameterIfAbsent(String key, String value) {
         org.apache.dubbo.common.URL result = super.addParameterIfAbsent(key, value);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL addParameters(Map<String, String> parameters) {
         org.apache.dubbo.common.URL result = super.addParameters(parameters);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL addParametersIfAbsent(Map<String, String> parameters) {
         org.apache.dubbo.common.URL result = super.addParametersIfAbsent(parameters);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL addParameters(String... pairs) {
         org.apache.dubbo.common.URL result = super.addParameters(pairs);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL addParameterString(String query) {
         org.apache.dubbo.common.URL result = super.addParameterString(query);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL removeParameter(String key) {
         org.apache.dubbo.common.URL result = super.removeParameter(key);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL removeParameters(Collection<String> keys) {
         org.apache.dubbo.common.URL result = super.removeParameters(keys);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL removeParameters(String... keys) {
         org.apache.dubbo.common.URL result = super.removeParameters(keys);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
     public URL clearParameters() {
         org.apache.dubbo.common.URL result = super.clearParameters();
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     @Override
@@ -677,7 +637,7 @@ public class URL extends org.apache.dubbo.common.URL {
     @Override
     public URL setServiceInterface(String service) {
         org.apache.dubbo.common.URL result = super.setServiceInterface(service);
-        return new URL(result);
+        return Urls.create(result, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     public org.apache.dubbo.common.URL getOriginalURL() {

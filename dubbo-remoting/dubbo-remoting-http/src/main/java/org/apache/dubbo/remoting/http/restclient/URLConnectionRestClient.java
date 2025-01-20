@@ -16,6 +16,8 @@
  */
 package org.apache.dubbo.remoting.http.restclient;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.dubbo.remoting.http.RequestTemplate;
 import org.apache.dubbo.remoting.http.RestClient;
 import org.apache.dubbo.remoting.http.RestResult;
@@ -46,7 +48,7 @@ public class URLConnectionRestClient implements RestClient {
         CompletableFuture<RestResult> future = new CompletableFuture<>();
 
         try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(requestTemplate.getURL()).openConnection();
+            HttpURLConnection connection = (HttpURLConnection) Urls.create(requestTemplate.getURL(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
             connection.setConnectTimeout(clientConfig.getConnectTimeout());
             connection.setReadTimeout(clientConfig.getReadTimeout());
             connection.setRequestMethod(requestTemplate.getHttpMethod());

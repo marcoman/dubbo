@@ -16,6 +16,8 @@
  */
 package org.apache.dubbo.config;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.Version;
 import org.apache.dubbo.common.constants.CommonConstants;
@@ -632,7 +634,7 @@ public class ReferenceConfig<T> extends ReferenceConfigBase<T> {
             }
         }
         if (urls.isEmpty() && shouldJvmRefer(referenceParameters)) {
-            URL injvmUrl = new URL(LOCAL_PROTOCOL, LOCALHOST_VALUE, 0, interfaceClass.getName())
+            URL injvmUrl = Urls.create(LOCAL_PROTOCOL, LOCALHOST_VALUE, 0, interfaceClass.getName(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS)
                     .addParameters(referenceParameters);
             injvmUrl = injvmUrl.setScopeModel(getScopeModel());
             injvmUrl = injvmUrl.setServiceModel(consumerModel);
