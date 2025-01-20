@@ -16,6 +16,8 @@
  */
 package org.apache.dubbo.rpc.cluster.support.wrapper;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.extension.ExtensionLoader;
 import org.apache.dubbo.metrics.event.MetricsDispatcher;
@@ -183,7 +185,7 @@ class ScopeClusterInvokerTest {
 
     @Test
     void testInjvmRefer() {
-        URL url = new URL(LOCAL_PROTOCOL, LOCALHOST_VALUE, 0, DemoService.class.getName());
+        URL url = Urls.create(LOCAL_PROTOCOL, LOCALHOST_VALUE, 0, DemoService.class.getName(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         url = url.addParameter(REFER_KEY, URL.encode(PATH_KEY + "=" + DemoService.class.getName()));
         url = url.setScopeModel(ApplicationModel.defaultModel().getDefaultModule());
 

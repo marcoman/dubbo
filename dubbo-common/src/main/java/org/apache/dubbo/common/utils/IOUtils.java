@@ -16,6 +16,8 @@
  */
 package org.apache.dubbo.common.utils;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.dubbo.common.constants.CommonConstants;
 
 import java.io.BufferedReader;
@@ -265,7 +267,7 @@ public class IOUtils {
         }
         try {
             // try URL
-            return new URL(resourceLocation);
+            return Urls.create(resourceLocation, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException ex) {
             // no URL -> treat as file path
             try {
